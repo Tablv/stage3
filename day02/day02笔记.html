@@ -90,3 +90,35 @@ git add -A  忽略空文件夹
     关联远程仓库的两种方式:
         HTTPS:可以直接关联使用,但是每次push的时候,都需要输入用户名和密码
         SSH:配置ssh密钥后,可以直接使用,不需要再输入用户名和密码
+
+        配置密钥:   
+            ssh-keygen -t rsa -C "邮箱地址"
+        生成一个密钥:
+            id_rsa 私钥(存放在自己电脑上)
+            id_rda.pub 公钥(将其内容配置在GitHub中)
+        在GitHub中配置公钥:
+            打开id_rda.pub文件,复制其中的内容
+            在gitHub中点击右上角头像,选择settings
+            -->SSH And GPGkeys
+            -->and new SSH key
+            -->tiltle填入名称,key中粘贴前面复制的内容
+            --> add
+        注:本机电脑中生成的密钥不要删除
+
+    4. 从远程仓库下载代码到本机
+        1.git pull
+            .进入本地仓库,将本地仓库与远程仓库关联
+                git remote add origin 远程仓库地址(远程仓库url.git)
+            .下载远程仓库命令:
+                git pull 远程仓库地址/别名 master
+                该命令会将远程仓库所有内容下来下来,包括所有的提交信息
+        2.git clone 命令
+            .git clone 远程仓库地址
+             不需要进入仓库,该命令会直接将远程仓库作为一个文件夹完成的下载下来.
+             下载的文件夹本身就是一个包含所有提交信息的仓库.
+    5.查看当前仓库有哪些关联
+        git remote
+    
+    6.删除远程关联
+        git remote remove 远程仓库地址别名
+        
