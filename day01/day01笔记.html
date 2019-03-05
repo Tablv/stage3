@@ -1,0 +1,141 @@
+沈以刚
+版本控制管理 --Git
+前端js框架   --AngularJs
+让js运行在服务端 --NodeJs
+非关系型数据库 --MongoDB
+
+
+版本控制管理工具:
+    1.集中式版本控制工具:
+        CVS  SVN
+    2.分布式版本控制工具:
+        GIT  bitkeeper
+GIT的出现,是为了管理linux的内核代码
+
+Linux的常用指令:
+    1.pwd cd ls
+    pwd:print working directory(打印工作目录)
+    cd :change directory(切换目录)
+        cd 目标文件夹的路径
+        cd .. 回退到上一级目录
+        cd ~  回退到当前用户主目录
+    ls :list (显示当前路径下所有的目录,不包括隐藏目录)
+        linux 以. 开头的目录或文件,为隐藏状态)
+    2.mkdir 
+    mkdir make directory(创建目录)
+    mkdir 目录名称
+    mkdir a目录 b目录
+    mkdir a/b  在a目录下创建b目录(a-父级目录  必须存在)
+    mkdir -p a/b 递归创建
+    
+    3.touch 
+    touch 文件名
+    如果文件名不存在,创建文件
+    如果文件名存在,修改文件的最后访问时间
+    touch 目录名  修改文件夹的最后修改时间
+
+    4.rmdir
+    remove directory 
+    rmdir 目录名  删除指定名称目录
+          只能删除空文件夹
+
+    5.rm
+    remove
+    rm 文件名称  删除指定名称的文件
+    删除非空文件夹:
+        rm -rf 文件夹名称
+    
+    6.vi
+    view
+    vi 文件名 打开文件,进入编辑界面,如果文件不存在,先创建,再进入编辑界面
+    
+    进入编辑页面后,首先是命令行模式,无法输入数据,需要按 a或i,进入输入模式
+    输入完成后,按 esc 退出输入模式,按:进入底行模式,输入wq 保存退出
+    w:保存 q退出 q! 强制退出
+    7.echo
+    echo 回显
+    echo 数据 > 文件名  (覆盖模式)
+    echo 数据 >> 文件名 (追加模式)
+    8.cat
+    catch 
+    cat 文件名 读取显示指定文件的内容
+
+git命令的使用:
+    所有的git命令,都是以git开头的
+
+1.配置git
+    git config --global user.name "用户名"      全局匹配global
+    git config --global user.email "邮箱地址"
+2.初始化本地仓库
+    git init 
+    git 会在当前目录下自动生成一个隐藏的文件夹 .git
+3.查看仓库的状态
+    git status
+    4种状态:
+        untracked:新建了文件,但是还没有纳入到git的控制中
+        modified: 文件被修改,但是还没有执行git add命令
+        staged :暂存了,但是还没有提交(执行过git add命令,没有执行git commit命令)
+        unmodified:全部提交完成,没有文件有修改
+4.提交
+    git add 文件名
+        将指定名称的文件提交到暂存区
+    git add -A 
+        将所有有修改的文件一次性全部提交到暂存区
+    git commit -m "提交的信息"
+        将暂存区的所有内容全部提交
+
+
+
+练习
+    1.在桌面右击打开 git bash
+    2.切换到d盘目录下
+    3.在d盘新建文件夹test
+    4.切换test.将test初始化为本地仓库
+    5.查看仓库状态
+    6.新建文件,查看状态
+    7.提交新建的文件
+    8.向文件中输入数据,提交
+
+5. 查看提交信息
+    git log
+
+    git log --protty=online
+
+    git reflog
+6.取消修改
+    1)取消工作区的修改
+      文件被修改,但是没有执行git add 命令
+      git checkout --文件名
+    2)取消暂存区的修改
+      文件被修改,并且执行过git add命令,没有执行git commit 命令
+      git reset HEAD 文件名
+      然后取消工作区的修改
+    3)取消master上的修改
+      无法取消修改,但是可以使用版本回退,类似重新提交某次请求
+
+      先使用git log 查看所有版本的id
+      确定回退到哪个版本后,使用命令
+      git reset --hard id
+      即.重新再一次提交该id 的commit
+
+练习:
+    使用linux命令
+    桌面点击git bash ,切换到d盘下
+    在d盘创建文件夹, /d/test/res
+    继续创建文件  /d/test/1.txt 
+    切换到res文件夹,将其初始化为本地仓库
+    新建test.txt 输入 新建文件
+    保存提交
+    将test.txt文件内容修改为:测试第二次提交
+    保存提交
+    新建2.txt 提交
+    往2.txt中输入数据aaaa
+    保存提交
+    ----------
+    -打开2.txt,删除其中内容,保存关闭
+    将2.txt内容还原为原来的aaaa
+    -打开test.txt ,删除其中的内容,git add 但不 commit
+    还原test.txt内容为原来的  测试第二次提交
+    -将仓库还原为第一次提交后的状态
+
+
