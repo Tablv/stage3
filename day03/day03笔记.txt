@@ -3,4 +3,124 @@
     初始化本地仓库
     新建文件1.txt  2.txt 提交
     github创建远程仓库,与本地仓库关联
-    推送颠三倒四
+    推送
+
+M mongoDB
+E expressJS
+A AugularJs
+N Node.js
+
+NodeJs
+1.什么是node.js?
+  是一个javaScript的运行环境
+  是一个专注于web服务器高性能优化的专家
+  基于v8引擎诞生
+  能让js脱离浏览器,运行在服务器的开发平台
+  用最小的硬件成本,追求更高的开发,更高的处理性能
+
+2.node.js的特点
+  1)单线程
+  2)非I/O阻塞
+  3)事件机制,事件环
+
+3.node.js适合做什么?
+  擅长I/O,不擅长计算
+  最擅长的是任务调度
+  比如:
+    用户表单数据的收集
+    考试系统
+    直播间
+    群聊
+
+4.如何使用
+  安装检测 node -v npm -v  这两个命令是否可以使用
+  运行一个简单的js文件  01.js
+  打开命令行:
+  输入 node 01.js  查看运行结果
+  注意:window是浏览器的,在这不能使用
+
+*写一个简单的服务器 (02_server.js)
+ 1)引入http
+    var http = require('http');
+ 2)创建服务
+    var server = http.createServer(function(req,res){
+        //req:浏览器发送过来的请求
+        //res:服务器返回的响应
+        //end()只能出现一次(一次请求,一次响应)
+        //为防止乱码出现,需要设置响应头,告诉浏览器解码方式
+        res.writeHead(200,{"Content-Type":"text/html;charset=utf-8"});
+        res.end('this is my first node.js 中文');
+        /*
+        end的作用:
+        结束请求
+        返回响应
+        */
+    });
+ 3)监听端口
+    server.listen(4000);
+ 4)在服务里编写内容
+
+ 启动服务,访问
+ localhost:4000
+ 
+
+*使用node.js返回一个完整的界面(02_page.js,02_page.html)
+    node.js 中没有根目录,所以如果要访问某个已经写好的页面,需要通过fs完成
+
+
+*请求req
+    03_req.js
+
+*响应res
+    03_res.js
+
+
+模块
+    node.js已经封装好的功能,我们可以直接拿来使用(python模块,jar包)
+
+    1.http模块
+    2.fs模块
+    3.url模块
+
+
+练习:
+    1.  输入localhost:4000  页面显示这是首页
+        输入localhost:4000/circle  页面显示 红色的圆形
+        输入localhost:4000/square  页面显示 蓝色的方形
+        输入其他地址,页面显示 地址错误
+
+    2.  输入localhost:4000 页面显示一个表单
+        用户输入用户名与密码后,后台接受数据
+        如果输入的用户名与密码 是 zhangsan  123
+        则显示  欢迎你,zhangsan
+        如果输入的内容不是
+        就显示 用户名或密码错误
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MIME:
+多用途Interne邮件拓展(MIME)类型,是一种标准化的方式来标识文档的性质和格式.
+语法:
+    通用结构:
+    type/subtype
+    MIME的组成结构非常简单；
+    由类型与子类型两个字符串中间用'/'分隔而组成。不允许空格存在。
+    type 表示可以被分多个子类的独立类别。subtype 表示细分后的每个类型。
+    MIME类型对大小写不敏感，但是传统写法都是小写。
+
+
+    https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types
