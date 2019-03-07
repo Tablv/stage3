@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <form>
+            用户名:<input type="text"  name="username">
+            密码:<input type="text" name="password">
+            <input type="button" value="登录">
+        </form>
+        <script>
+        //获取提交按钮
+        var btn = document.querySelector('input[type=button]');
+        //绑定点击事件
+        btn.onclick=function(){
+            //获取输入数据
+            var arr = document.querySelectorAll('input[type=text]');
+            //组成本地对象
+            var data = {
+                username:arr[0].value,
+                password:arr[1].value
+            };
+            //转成json对象
+            var jdata = JSON.stringify(data);
+            // 创建ajax对象
+            var xhr = new XMLHttpRequest();
+            // 搭建链接
+            xhr.open('post','/check');
+            // 设置请求头
+            xhr.setRequestHeader('Content-Type','application/json');
+            //发送数据
+            xhr.send(jdata);
+            //监听
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4&&xhr.status==200){
+                    console.log('发送成功');
+                }
+            }
+        }
+        </script>
+</body>
+</html>

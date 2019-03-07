@@ -16,7 +16,7 @@ let server = http.createServer(function(req,res){
     // 判断
     if(pathname=="/"){
         res.end("this is index");
-    }
+    } else
     if(pathname=="/circle"){
         // 读红色圆形
         console.log('you know sha');
@@ -29,7 +29,7 @@ let server = http.createServer(function(req,res){
                 console.log('hai know sha');
             }
         });
-    }
+    } else
     if(pathname=="/square"){
         // 读蓝色的方形
         fs.readFile('./blue_square.html',function(err,data){
@@ -39,6 +39,8 @@ let server = http.createServer(function(req,res){
                 res.end(data);
             }
         });
+    } else {
+        res.end('地址错误');
     }
     
     
