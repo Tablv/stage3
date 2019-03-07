@@ -21,7 +21,6 @@ let server = http.createServer(function (req, res) {
             }
         });
     }else{
-        res.writeHead(200,{"Content-type":"image/png;charset=utf-8"});
         fs.readFile('..'+pathname,function(err,data){
             if(err){
                 console.log(err);
