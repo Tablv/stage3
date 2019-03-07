@@ -1,0 +1,66 @@
+fs--NodeJs的文件系统模块
+    1.新建文件/向文件中写入数据(01-write.js)
+    *fs.writeFile(file,data[,options],callback);
+    参数:
+        file:文件地址;
+        data:写入的数据;
+        callback:function(err){}回调函数
+        options: 类型object|string
+        encoding:string|null  默认值 urf-8
+    功能
+        异步的将数据写入文件
+        如果文件不存在,则创建文件,然后将数据写入进去
+        如果文件存在,则将里面原有的内容覆盖掉
+    同步方法:
+        writeFileSync('文件地址','写入的数据');
+
+
+    *fs.appendFile(file,data[,options],callback);
+        参数与writeFile相同
+    功能:
+        异步的将数据追加写入文件
+        其余相同
+    
+    2.读取文件(01-read.js)
+    *fs.readFile('文件地址',function(err,data){});
+    同步方法:
+        readFileSync('文件地址');  //返回值为读取到的内容
+        //如果读取出去,返回值为  undefined
+    同步方法执行的时间,比异步方法多
+
+
+    3.删除文件(01-unlink.js)
+    fs.unlink('文件地址',function(err){});
+
+    4.创建文件夹(01-mkdir.js)
+    fs.mkdir('地址',function(err){});
+
+    练习
+        使用代码在当前目录下创建一个新的目录  a
+    
+    5.删除文件夹(01-redir,js)
+    fs.rmdir('地址',function(err){});
+    //只能删除空文件夹,不能删除文件
+
+    6.读取文件夹中所有的内容(01-readdir.js)
+    fs.readdir('地址',function(err,flies){});
+
+    7.判断一个file是文件还是文件夹
+    fs.stat('地址'function(err,stats){});
+
+练习:
+    读取day04文件夹的内容,循环遍历显示day04中每个文件,并指出该文件是文件还是文件夹
+    01.js 是一个文件
+    02.js 是一个文件
+    a  是一个文件夹
+
+练习02:
+    localhost:4000  ===> 表单页面   username , password
+    点击提交,发送请求
+    后台,获取用户名与密码
+    创建一个名称为username的txt文件,里面保存的是密码
+
+练习03:
+    访问localhost:4000
+    页面显示images中的图片
+    图片出不来的原因:nodejs没有根目录
