@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='zh-cn'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>首页</title>
+    <link href='/css/bootstrap.css' rel='stylesheet'>
+    <!--[if lt IE 9]>
+    <script src='boot/js/html5shiv.min.js'></script>
+    <script src='boot/js/respond.min.js'></script>
+    <![endif]-->
+    <style>
+    .show_dir{
+        list-style: none;
+        padding:0;
+    }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">全部相册</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/toUpload">上传图片</a></li>
+                    <li><a href="#">新建相册</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <ul>
+            <% for(var i = 0; i<dirs.length;i++){ %>
+            <li class="show_dir">
+                <a href="#">
+                    <img src="/images/dir.jpg" width="100px">
+                    <h3><%= dirs[i] %></h3>
+                </a>
+                <a href="#">删除</a>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</body>
+
+</html>

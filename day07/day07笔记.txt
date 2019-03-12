@@ -1,0 +1,50 @@
+express框架
+一:express常见的3个功能
+1.模板功能
+2.静态文件伺服功能
+    01_static.js
+3.路由功能
+    01_route.js
+
+二:参数的设置与获取
+    设置:
+        在请求路径前加  :
+    获取:
+        请求url:id这种方式
+        或者使用正则:
+                            req.params 这是一个对象
+        get请求参数的获取:      req.query
+        post请求参数的获取: 无文件参数  body-parser模块
+                           有文件参数  formidable模块
+    02_params.js
+    express框架处理解析请求时:
+    请求处理会忽略大小写,忽略?后面的参数,忽略#后面的锚点
+
+三:中间件
+    可以处理req  res对象的函数
+    中间件的功能:
+        处理执行代码
+        处理请求与响应
+        终结请求
+        调用下一个中间件(将请求交给下一个中间件来处理)
+    get()
+        处理get方式的请求
+    post()
+        处理post方式的请求
+    use()
+        可以处理get或post的请求
+        
+
+res.end() res.send() res.render()
+end:
+    快速结束请求,常用于测试,参数类型:<string>,<buffer>
+    如果返回的响应包含中文,要设置响应头(writeHead)
+send:
+    快速结束请求,参数类型:string,buffer,array,json对象,object
+    会自动设置消息头(不需要写writeHead)
+render:
+    参数:视图名,json数据,回调函数
+    作用:
+        返回视图界面,根据视图名到指定文件夹(views)下去查找对应的视图模板文件
+    修改默认文件夹名称:
+        app.set('views',path);

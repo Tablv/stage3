@@ -1,6 +1,20 @@
 1.使用formidable模块处理文件上传
+    引入:
     require('formidable');
+    获取表单对象:
+    var form = formidable.IncomingForm();
+    解析表单对象:
+    form.parse(req,function(err,fields,files){
+        //fields:参数对象
+        //files:文件对象
+    });
 
+    设置文件上传保存的路径:
+    要在解析请求之前设置
+    form.uploadDir = 'path'
+
+修改文件名
+    fs.rename(oldDir,newDir,function(){});
 
     练习:
         使用formidable上传文件
@@ -18,8 +32,12 @@ ejs的使用:
         02_ejs_1.js
     模拟填充一个页面:
         02_ejs_2.js
+        ejs.render(模板字符串,填充内容);
+
         填充的数据可以是数字,字符串,数组等
     02_ejs_3.js
+
+
 
     练习2:
     访问localhost:4000进入登录页面
@@ -41,14 +59,14 @@ express的三个常用方法:
         2.路由功能
         3.模板
     
-    模板功能:
-        03_express_1.js
-        1.nodejs默认的模板引擎是jade,如果要使用ejs的话,要提前设置模板引擎
+模板功能:
+    03_express_1.js
+    1.nodejs默认的模板引擎是jade,如果要使用ejs的话,要提前设置模板引擎
         express查找视图模板,默认从views文件下查找
-        设置模板引擎:
+    设置模板引擎: engine:发动机\引擎
         app.set('view engine','ejs');
-        如果没有设置ejs模板引擎,则在res.render()中,需要将文件名写完整,包括扩展名
-        设置了模板引擎之后,可以省略ejs扩展名
+            没有设置ejs模板引擎,则在res.render()中,需要将文件名写完整,包括扩展名
+            设置了模板引擎之后,可以省略ejs扩展名
 
 练习:
     访问/showpic请求
@@ -57,7 +75,9 @@ express的三个常用方法:
 静态文件伺服能力  03_express_2.js
     因为nodejs 没有根目录,所以在处理其他静态文件引用时,请求路径会无法找到对应的资源
     express提供的静态伺服功能,实际上就是自己指定一个文件夹,将其指定为根目录.
-
+    指定根目录:
+    app.use(express.static('./public'));
+    
     1.如果设置了根目录,又没有处理任何请求,那么访问localhost:4000的时候,
             默认访问的就是 根目录中的 index.html 页面
     2.页面中引用的相对路径,实际上是相对于根目录
