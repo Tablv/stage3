@@ -1,5 +1,5 @@
 1.使用formidable模块处理文件上传
-
+    require('formidable');
 
 
     练习:
