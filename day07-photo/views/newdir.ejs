@@ -21,22 +21,17 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/toUpload">上传图片</a></li>
-                    <li><a href="/newDir">新建相册</a></li>
+                    <li><a href="/toUpload">上传图片</a></li>
+                    <li class="active"><a href="/newDir">新建相册</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container">
-        <form action="/doUpload" enctype="multipart/form-data" method="POST">
-            <h1>请选择要上传的文件夹:</h1>
-            <select name="dirName" class="form-control">
-                <% for(var i=0;i<dirs.length;i++){ %>
-                <option value="<%= dirs[i] %>"><%= dirs[i] %></option>
-                <% } %>
-            </select>
-            <input type="file" name="pic" class="btn btn-success"><br>
-            <input type="submit" value="上传" class="btn btn-primary">
+        <form action="/createDir" method="POST">
+            <h1>请输入要创建的文件名称:</h1>
+            <input type="text" class="form-control" name="dirName"><br>
+            <input type="submit" value="创建文件夹" class="btn btn-primary">
         </form>
     </div>
 </body>

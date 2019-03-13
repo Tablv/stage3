@@ -10,10 +10,12 @@ express框架
     设置:
         在请求路径前加  :
     获取:
-        请求url:id这种方式
+        get请求参数的获取:
+        请求url/:id 
         或者使用正则:
                             req.params 这是一个对象
-        get请求参数的获取:      req.query
+        使用url?id:
+                            req.query
         post请求参数的获取: 无文件参数  body-parser模块
                            有文件参数  formidable模块
     02_params.js

@@ -21,23 +21,20 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/toUpload">上传图片</a></li>
+                    <li><a href="/toUpload">上传图片</a></li>
                     <li><a href="/newDir">新建相册</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container">
-        <form action="/doUpload" enctype="multipart/form-data" method="POST">
-            <h1>请选择要上传的文件夹:</h1>
-            <select name="dirName" class="form-control">
-                <% for(var i=0;i<dirs.length;i++){ %>
-                <option value="<%= dirs[i] %>"><%= dirs[i] %></option>
-                <% } %>
-            </select>
-            <input type="file" name="pic" class="btn btn-success"><br>
-            <input type="submit" value="上传" class="btn btn-primary">
-        </form>
+        <ul>
+            <% for(var i = 0; i<pics.length;i++){ %>
+            <li class="show_pic">
+                <img src="/<%= dirName %>/<%= pics[i] %>" width="100px">
+            </li>
+            <% } %>
+        </ul>
     </div>
 </body>
 

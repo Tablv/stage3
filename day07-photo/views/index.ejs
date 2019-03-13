@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="/toUpload">上传图片</a></li>
-                    <li><a href="#">新建相册</a></li>
+                    <li><a href="/newDir">新建相册</a></li>
                 </ul>
             </div>
         </div>
@@ -37,11 +37,11 @@
         <ul>
             <% for(var i = 0; i<dirs.length;i++){ %>
             <li class="show_dir">
-                <a href="#">
+                <a href="/showPic/<%= dirs[i] %>">
                     <img src="/images/dir.jpg" width="100px">
                     <h3><%= dirs[i] %></h3>
                 </a>
-                <a href="#">删除</a>
+                <a href="/del?dirName=<%= dirs[i] %>">删除</a>
             </li>
             <% } %>
         </ul>

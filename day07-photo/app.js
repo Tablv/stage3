@@ -3,11 +3,16 @@ var express = require('express');
 var fs = require('fs');
 var sd = require('silly-datetime');
 var fd = require('formidable');
+var bd = require('body-parser');
+var rf = require('rimraf');
 var app = express();
 app.listen(4000);
 
 //设置视图模板
 app.set('view engine','ejs');
+
+app.use(bd.urlencoded({extended:true}));
+
 //设置根目录
 app.use(express.static('./public'));
 app.use(express.static('./uploads'));
@@ -76,4 +81,67 @@ app.post('/doUpload',function(req,res){
             res.redirect('/'); //重定向
         });
     });
+});
+
+//点击首页中的某个文件夹,页面跳转到图片展示界面,显示被点击文件夹中的图片
+// /showPic
+app.get('/showPic/:dirName',function(req,res){
+    //获取参数
+    var dirName = req.params.dirName;
+    //读取该文件下的内容
+    var path = './uploads/'+dirName;
+    fs.readdir(path,function(err,files){
+        if(err){
+            console.log(err);
+            res.send('读取内容失败');
+            return;
+        }
+        //将读取到的数据传递给前端页面
+        //用到的数据:所有读取的数据,被点击到的文件名称
+        res.render('show',{pics:files,dirName:dirName});
+    });
+});
+
+//点击新建相册,跳转到新建相册页面
+// /newDir
+app.get('/newDir',function(req,res){
+    //不需要传递数据,直接跳转
+    res.render('newdir');
+});
+
+//点击创建文件夹,服务器创建用户输入的文件夹
+// /createDir
+app.post('/createDir',function(req,res){
+    //获取参数
+    var dirName = req.body.dirName;
+    //创建文件夹
+    var path = './uploads/' + dirName;
+    fs.mkdir(path,function(err){
+        if(err){
+            console.log(err);
+            res.send('创建失败');
+        }else{
+            //创建成功,跳转到首页
+            res.redirect('/');
+        }
+    });
+});
+
+//处理 /del请求
+//点击后,删除文件夹
+app.get('/del',function(req,res){
+    //请求参数
+    var dirName = req.query.dirName;
+    //删除dirName文件夹,使用rimraf模块
+    var path = './uploads/'+dirName;
+    rf(path,function(err){
+        if(err){
+            console.log(err);
+            res.send('删除失败');
+            return;
+        }
+        //删除成功返回首页
+        res.redirect('/');
+    });
+
 });
