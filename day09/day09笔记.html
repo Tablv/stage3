@@ -1,0 +1,163 @@
+数据库
+关系型数据库
+oracle mysql sqlserver db2
+非关系型数据库
+mongoDB
+
+关系型数据库的数据是以表格的形式保存的,表格中包含行和列
+每一行,就是一条完整的数据(也可称之为记录),保存数据时,数据的格式与表格规定的格式必须保持一致.
+关系型数据库中保存 表, 表 中保存记录
+
+mongoDB是这样:
+非关系型数据库数据是以json对象的形式保存的,每一个数据就是一个json对象(也称之为文档)
+非关系型数据库中保存 集合, 集合 中保存文档
+mongoDB
+配置环境变量
+
+1.启动mongo服务
+mongod --dbpath 文件夹路径(将那个文件夹作为数据库)
+服务启动后,命令窗口不能关闭
+mongod 可以启动mongo服务,但是使用的是c盘下的db文件夹,如果没有找到该文件夹,则启动失败
+2.连接数据库服务
+mongo
+
+3.创建数据库/使用数据库
+use 数据库名称
+使用/进入到指定名称的数据库中,如果不存在,则创建
+创建实际上是假象,其实没有创建,只有当保存数据进去时,才会真正分配空间创建该数据库.
+
+4.查看当前在哪个数据库中
+db
+
+5.查看有哪些数据库/有哪些集合
+show dbs
+show collections
+
+6.插入数据
+db.集合名.insert(json对象);
+db.student.insert({sid:1001,name:'jim'});
+
+同时插入多条数据(3.2版本后有)
+
+db.集合名.insertMany(json格式的数组);
+db.user.insertMany( [
+{id:1,name:"Jack",age:12,hobbies:["读书","游泳"],score:{math:89,english:60,PE:77}},
+{id:2,name:"Mike",age:11,hobbies:["旅游","运动"],score:{math:89,english:87,PE:86}},
+{id:3,name:"Lucy",age:12,hobbies:["旅游","读书"],score:{math:88,english:56,PE:66}},
+{id:4,name:"Lily",age:11,hobbies:["运动","游泳"],score:{math:84,english:78,PE:34}},
+]);
+
+练习:
+删除db文件,退出服务
+1.启动服务(db文件)
+mongod --dbpath D:\db
+2.链接服务
+mongo
+3.查看当前有哪些数据库
+show dbs
+4.新建web数据库,在一次查看有哪些数据库
+use web
+show dbs
+5.查看当前在哪个数据库中
+db
+6.向user集合中插入数据:
+{id:1,name:'zhangsan',age:23}
+db.user.insert({id:1,name:'zhangsan',age:23});
+show dbs
+
+{id:1,name:"Jack",age:12,hobbies:["读书","游泳"],score:{math:89,english:60,PE:77}}
+{id:2,name:"Mike",age:11,hobbies:["旅游","运动"],score:{math:89,english:87,PE:86}}
+{id:3,name:"Lucy",age:12,hobbies:["旅游","读书"],score:{math:88,english:56,PE:66}}
+{id:4,name:"Lily",age:11,hobbies:["运动","游泳"],score:{math:84,english:78,PE:34}}
+
+7.查询数据
+db.集合名.find();
+查询当前数据库中某个集合里面所有的数据
+db.集合名.find(json对象);
+db.stu.find({条件},{显示的属性})
+json对象表示查询的条件,如果不写或者是{},则表示无条件查询(查询全部数据)
+
+如果要查询符合某个条件的数据,则添加条件进去
+db.user.find({age:23});
+查询age值为23的所有的记录
+db.user.find({age:23,name:'zhangsan'});
+查询age为23,姓名为zhangsan的所有记录
+
+查询兴趣爱好有xx的信息:(数组元素)
+db.collection.find({属性名:[数组]});
+单个数组元素,可以省略[]
+
+查询成绩某某的信息:(对象元素)
+db.collectio.find({"属性.属性":值})
+
+db.student.find({"score.math":89});
+
+8.删除数据
+db.集合名.remove(json对象);
+删除给定 json条件的记录 ; json对象不能省略
+
+* db.集合名.remove({});
+无条件删除,删掉所有的记录
+
+9.修改数据
+1.替换操作
+db.集合名.update(json条件,json数据);
+将 符合 json条件 的记录内容 ,修改成 json数据
+(替换,将原来的整条数据替换成第二个参数给定的数据);
+2.更新操作
+db.集合名.update(json条件,{$set:json数据})
+
+3.批量修改
+db.集合名.update(json条件,{$set:json数据},{multi:true})
+如果不加{multi:true} , 只会修改第一个匹配的 记录
+
+10.从外部导入数据
+mongoimport -d 数据库名称 -c 集合名 外部文件路径
+该命令与mongod mongo需要在window环境下使用
+
+11.删除集合
+db.collection.drop()
+
+12.删除数据库
+db.dropDatabase() 
+web.dropDatabase()
+删除之后,输入db查询当前所在的数据库,显示的依然是被删除的数据库
+
+
+skip:跳过查询数据的条数
+db.collection.find().skip(3) //查询结果跳过3条数据,从第四条数据开始查询
+
+limit:限制每次查询显示的数据的条数
+db.collection.find().limit(2);  // 只查看2条数据
+
+db.collection.find().skip(3).limit(2);
+//跳过3条数据,然后只查询2条数据
+//如果查询的数据不够limit限制的,那么就显示剩余所有的数据
+
+
+条件:
+    关系:
+        相等 {age:12}   年龄为12岁
+             {age:{$eq:12}}
+        大于 $gt (great than)
+        小于 $lt (less than)
+        大于等于 $gte (great or equal)
+        小于等于 $lte (less or equal)
+        不相等   $ne  (not equal)
+    逻辑:
+        与  AND 
+            {age:12,sex:'M'}  年龄为12,且性别为男
+            {$and:[{age:12},{sex:'M'}]}
+        或  OR
+            {$or:[{age:12},{sex:'M'}]} 年龄是12,或者性别是男
+        NOR
+            {$nor:[{age:12},{sex:'M'}]} 年龄不是12,性别也不是男
+        非  NOT
+            {$not:{age:12}}
+        IN 
+            {age:{$in:[12,13,43,14]}}
+
+分页:
+每次显示的条数  pagesize
+页数 page
+skip(pagesize*(page-1)).limit(pagesize);
