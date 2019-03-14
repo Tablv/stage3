@@ -1,0 +1,1 @@
+{"username":"unix","password":"ubix","ptype":"teacher"};{"username":"lvchangjie","password":"123","ptype":"student"};{"username":"shixi","password":"456","ptype":"student"};

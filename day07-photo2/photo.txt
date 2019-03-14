@@ -1,0 +1,14 @@
+相册案例:
+    项目结构:
+        node_modules   下载的模块
+        public         存放公共资源的文件夹
+        uploads        存放上传图片的文件夹
+        views          存放视图模板的文件夹
+        app.js         服务启动文件
+        package.json   配置文件
+需要用到的模块
+    express
+    ejs
+    formidable
+    silly-datetime
+    rimraf(可以用fs-extra替代)

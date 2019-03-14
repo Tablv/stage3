@@ -143,5 +143,4 @@ app.get('/del',function(req,res){
         //删除成功返回首页
         res.redirect('/');
     });
-
 });

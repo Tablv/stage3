@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='zh-cn'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>首页</title>
+    <link href='/css/bootstrap.css' rel='stylesheet'>
+    <!--[if lt IE 9]>
+    <script src='boot/js/html5shiv.min.js'></script>
+    <script src='boot/js/respond.min.js'></script>
+    <![endif]-->
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">全部相册</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/toUpload">上传图片</a></li>
+                    <li class="active"><a href="/newDir">新建相册</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <form action="/createDir" method="POST">
+            <h1>请输入要创建的文件名称:</h1>
+            <input type="text" class="form-control" name="dirName"><br>
+            <input type="submit" value="创建文件夹" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+
+</html>

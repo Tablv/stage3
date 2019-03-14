@@ -1,0 +1,21 @@
+注册页面
+    用户名+密码+下拉菜单
+
+    获取用户名 密码 账户类型
+    将其保存(写入文件)
+
+    页面跳转,显示所有用户的信息:
+    1.用户名:zhangsan   密码:123   类型 teacher
+    2.用户名:lisi       密码:456   类型 student
+    .....
+
+
+
+model                    : 工具类
+node_modules             : 外部库
+public                   : 公共资源类(css,js,images)
+route                    : 路由
+sourcedb                 : 资源数据库
+views                    : 视图
+app.js                   : 启动文件
+package.json             : 配置文件
