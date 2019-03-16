@@ -42,10 +42,33 @@
                 <h1> 欢迎你<%= uname %>,身份:<%= ptype %></h1>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>商品编号</td>
+                        <td>商品名称</td>
+                        <td>商品价格</td>
+                        <td>存货数量</td>
+                        <td>操作</td>
+                    </tr>
+                    <% for(var i = 0;i<goods.length;i++){ %>
+                    <tr>
+                        <td><%= goods[i]._id %></td>
+                        <td><%= goods[i].gname %></td>
+                        <td><%= goods[i].gprice %></td>
+                        <td><%= goods[i].gcount %></td>
+                        <td>
+                            <a href="/toUpdateGood?gid=<%= goods[i]._id %>">修改</a>&nbsp;
+                            <a href="/deleteGood?gid=<%= goods[i]._id %>">删除</a>
+                        </td>
+                    </tr>
+                    <% } %>
+                </table>
+                <a href="/toGood">进货</a>
+            </div>
+        </div>
     </div>
-    <br><br><br><br><br><br><br><br>
-    <script src='/js/jquery.min.js'></script>
-    <script src='/js/bootstrap.js'></script>
 </body>
 
 </html>
