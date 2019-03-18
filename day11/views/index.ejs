@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    table{
+        border:1px solid green;
+    }
+    tr{
+        border:1px solid green;
+    }
+    td{
+        border:1px solid green;
+    }
+    
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>商品编号</td>
+            <td>商品名称</td>
+            <td>商品价格</td>
+            <td>存货数量</td>
+            <td>操作</td>
+        </tr>
+        <% for(var i=0;i<products.length;i++){ %>
+        <tr>
+            <td><%= products[i].id %></td>
+            <td><%= products[i].name %></td>
+            <td><%= products[i].price %></td>
+            <td><%= products[i].amount %></td>
+            <td>
+                <a href="/toUpdate?id=<%= products[i].id %>">修改</a>
+                &nbsp;&nbsp;
+                <a href="/del?id=<%= products[i].id %>">删除</a>
+            </td>
+        </tr>
+        <% } %>
+        <tr>
+            <td>
+                <a href="/toAdd">进货</a>
+
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

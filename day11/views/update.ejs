@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <form action="/doUpdate">
+            <input type="text" value="<%= shop.id %>" name="id" hidden>
+            商品编号： <%= shop.id %> <br>
+            商品名称：<%= shop.name %> <br>
+            商品价格： <input type="text" name="price" value="<%= shop.price %>"><br>
+            商品数量： <input type="text" name="amount" value="<%= shop.amount %>"><br>
+            <input type="submit" value="修改">
+          </form>
+</body>
+</html>

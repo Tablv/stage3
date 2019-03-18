@@ -1,0 +1,8 @@
+一:mongoose的使用
+   mongoose的使用,是建立在schema的基础上的
+   01.js
+
+   练习:
+      使用mongoose重写昨天的案例
+
+二:封装mongoose的增删改查(mymodel)
