@@ -18,10 +18,10 @@ exports.showPage = function (req, res) {
 // oper: 要执行的操作
 // callback : 回调函数
 // redirectUrl : 操作执行出错式,返回的页面
-function getDbOper(data,mongolist,Oper,callback,redirectUrl){
+function getDbOper(data,mongolist,Oper,callback,res,redirectUrl){
     utils[Oper](data.filter,mongolist, function (err, result) {
         if (err || result.length == 0) {
-            console.log(Oper +": 执行失败" + err);
+            console.log(Oper +": 执行失败" + err||'查询结果为空');
             if(redirectUrl){
                 res.redirect(redirectUrl);
             }
@@ -42,7 +42,7 @@ exports.regist = function (req, res) {
     //调用插入方法
     getDbOper(data,config.user,'dbInsert',function(result){
         res.redirect('/toLogin');   //注册成功跳转登录页面
-    });
+    },res,'/toRegist');
 }
 
 
@@ -66,7 +66,7 @@ exports.login = function (req, res) {
             };
             res.render('show', obj);   //将最后的结果,返回到展示界面
         });
-    },redirectUrl);
+    },res,redirectUrl);
 };
 
 // 处理 /showGood 请求,去数据库下发对goods的查询请求
@@ -89,7 +89,7 @@ exports.showGood = function (req, res) {
         } else {
             res.render('showgood', obj);   // 如果条件是空对象,那么就是展示页面发出的请求
         }
-    });
+    },res,'/showGood');
 };
 
 // addGood 方法
@@ -100,7 +100,7 @@ exports.addGood = function (req, res) {
     // 调用 插入 方法
     getDbOper(data,config.goods,'dbInsert',function(result){
         res.redirect('/showGood');      // 插入成功 跳转到 展示界面
-    });
+    },res,'/toGood');
 };
 
 // deleteGood 方法
@@ -112,7 +112,7 @@ exports.deleteGood = function (req, res) {
     // 调用 删除 方法
     getDbOper(data,config.goods,'dbDelete',function(result){
         res.redirect('/showGood');      //删除成功 跳转登录界面
-    });
+    },res,'/showGood');
 }
 
 // updateGood 方法
@@ -128,5 +128,5 @@ exports.updateGood = function (req, res) {
     // 调用 修改 方法 
     getDbOper(data,config.goods,'dbUpdate',function(result){
         res.redirect('/showGood');      //更新成功 跳转到登录界面
-    });
+    },res,'toUpdateGood');
 }
