@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .d{
+        border:dotted rgb(95, 87, 87) 1px;
+    }
+    </style>
+</head>
+<body>
+    <form action="/tijiao" method="POST">
+        用户名: <input type="text" name="username"><br>
+        留言:<textarea name="content" cols="30" rows="10"></textarea><br>
+        <input type="submit" value="确定">
+    </form>
+    <hr>
+    <!-- 展示 数据库中留言信息 -->
+    <% for(var i=0;i<data.length;i++){ %>
+        <div class="d">
+            <div><%= data[i].username %></div>
+            <div><%= data[i].content %></div>
+            <div><%= data[i].time %></div>
+            <a href="/toUpdate/<%= data[i]._id %>">修改</a>
+            <a href="/del/<%= data[i]._id %>">删除</a>
+        </div>
+    <% } %>
+</body>
+</html>

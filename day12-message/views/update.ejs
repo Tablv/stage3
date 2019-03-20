@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form action="/doUpdate" method="POST">
+        <input type="text" value="<%= data._id %>" name="id" class="hidden">
+        <h3><%= data.username %></h3>
+        <textarea name="content" cols="30" rows="10"><%= data.content %></textarea><br>
+        <input type="submit" value="确认">
+    </form>
+</body>
+</html>
