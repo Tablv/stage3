@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang='zh-cn'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>首页</title>
+    <link href='/css/bootstrap.css' rel='stylesheet'>
+    <style>
+        .content div {
+            border: 1px solid #333;
+            box-sizing: border-box;
+            padding: 20px 0;
+        }
+        .content a{
+            color:#135f9f;
+            
+        }
+        .content a:hover{
+            text-decoration:none;
+            color:#0785ef;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav navbar-default navbar-inverse">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/card/showCard">首页</a></li>
+                    <li><a href="/user/showUser">个人信息</a></li>
+                    <li><a href="#"><%= unick %></a></li>
+                    <li><a href="/card/toAddCard">发表帖子</a></li>
+                    <li><a href="#">滴滴滴</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>帖子名称</td>
+                        <td>帖子内容</td>
+                        <td>发帖人</td>
+                        <td>发表时间</td>
+                    </tr>
+                    <% for(var i = 0;i<data.length;i++){ %>
+                    <tr>
+                        <td>
+                            <a href="/message/showMessage?tid=<%= data[i]._id %>"><%= data[i].title %></a>
+                        </td>
+
+                        <td>
+                            <%= data[i].content %>
+                        </td>
+
+                        <td>
+                            <a href="/user/showOtherUser/<%= data[i].uname %>"><%= data[i].uname %></a>
+                        </td>
+                        <td><%= data[i].time %></td>
+                    </tr>
+                    <% } %>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

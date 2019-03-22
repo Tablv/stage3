@@ -102,20 +102,40 @@
 <div class="span12">
 <div class="jc-demo-box">
 
-  <img src="<%= pic %>" height="400" width="602" id="target" alt="[Jcrop Example]" />
+  <img src="<%= pic %>" id="target" alt="[Jcrop Example]" />
 
   <div id="preview-pane">
     <div class="preview-container">
       <img src="<%= pic %>" class="jcrop-preview" alt="Preview" />
     </div>
   </div>
+  <input type="button" value="剪切" id="btn">
 
-
 </div>
 </div>
 </div>
 </div>
-
+<script>
+  // 给按钮添加单击事件
+  $('#btn').on('click',function(){
+    // 获取剪切图片需要的数据 w h x y
+    var w = $('.jcrop-holder>div:first-child').css('width');
+    var h = $('.jcrop-holder>div:first-child').css('height');
+    var x = $('.jcrop-holder>div:first-child').css('left');
+    var y = $('.jcrop-holder>div:first-child').css('top');
+    // 获取图片
+    var img = $('#target').attr('src');
+    console.log(w,h,x,y);
+    $.ajax({
+      url:'/cut',
+      data:{w:w,h:h,x:x,y:y,img:img},
+      success:function(result){
+        alert(result);
+        console.log(result);
+      }
+    })
+  });
+</script>
 </body>
 </html>
 

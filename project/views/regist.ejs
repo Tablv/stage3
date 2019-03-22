@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang='zh-cn'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>注册</title>
+    <link href='/css/bootstrap.css' rel='stylesheet'>
+    <style>
+    .content div{
+        border:1px solid #333;
+        box-sizing:border-box;
+        padding:20px 0;
+    }
+    form{
+        width:80%;
+        padding:0 20%;
+    }
+    </style>
+</head>
+
+<body>
+    <nav class="nav navbar-default navbar-inverse">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">首页</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-8">
+                <form action="/user/doRegist" method="POST">
+                    
+                    用户名:<input type="text" name="uname"><br>
+                    昵  称:<input type="text" name="unick"><br>
+                    密  码:<input type="text" name="upass"><br>
+                    <!-- 头  像:<input type="file" name="uphoto" value=""><br> -->
+                    <select name="utype" style="display:none">
+                        <option value="student" selected>student</option>
+                        <option value="teacher">teacher</option>
+                    </select><br>
+                    <input type="submit" value = '注册' class="btn btn-info">
+                </form>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-success" name="login" href="/user/toLogin">登录</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+功能:    ---> contorller
+登录(user/login)
+注册(user/regist)
+查看个人信息(user/Find)
+修改个人信息(user/Update)
+注销(user/cancel)
+发表帖子(card/Add)
+删除帖子(card/Delete)
+发表留言(message/Add)
+修改留言(message/Update)
+删除留言(message/Delete)
+查看留言(message/Find)
+发表评论(comment/Add)
+查看评论(comment/Find)
+修改评论(comment/Update)
+删除评论(comment/Delete)
+我的帖子(user/card/Find))
+我的留言(user/message/Find)
+我的评论(user/comment/Find)
+
+
+数据库:  ---> sourceDB
+mongodb  
+potos    头像
+数据库名:project
+三个集合:users(用户) cards(帖子) messages(留言) comments(评论)
+users: uname unick uphoto utype upass _id
+      uname 唯一
+      utype : 0 管理员 1 普通会员
+      uphoto: 头像   有默认值
+      upass : md5 base64 加密
+      _id: 用户信息唯一主键
+cards: title content  uid _id
+      titile:帖子名称
+      content:帖子内容
+      uid : 与user的_id关联的外键 , 表示谁发的帖子
+      _id : 唯一主键
+
+messages:  content time uid cid _id
+      cid: 与cards中_id关联,外键 ,表示哪个帖子下的留言
+      uid: 与user中_id关联,外键  ,表示谁发的留言
+      _id: 留言信息唯一主键
+
+comments: content messid uid  _id
+      uid:    与 user 中_id 关联,外键 , 表示谁发的评论
+      messid: 与 message中_id关联,外键 , 表示在哪个留言下的评论
+      _id:  评论信息唯一主键
+
+数据库名:log
+一个集合: logs(日志)
+logs:uid operate(inset update delete find) time _id
+    uid: 与user中_id关联,外键
+    _id: 操作唯一主键
+
+工具:    ----> dbUtils
+连接数据库  connectDB
+插入     insertDB
+修改     updataDB
+删除     deleteDB
+单条查询     findDB
+多条查询     findAllDB
+
+视图:     ----> views
+注册页面
+登录页面
+帖子页面     ---- 展示所有帖子
+(只能删除,不能修改)
+留言首页     ---- 展示该帖子全部留言
+(只有自己的能删除)
+评论页面     ---- 展示该留言的全部评论
+(修改删除,请求带锚点)
+个人信息页面
+(修改注销)
+
+请求路由: ----> route
+/ 
+user/toLogin : 跳转登录页面
+user/doLogin : 执行登录操作
+user/toRegist: 跳转注册页面
+user/doRegist: 执行注册操作
+card/showCard : 展示首页操作
+message/toMessage: 跳转帖子页面
+message/showMessage: 展示帖子页面
+message/upMessage: 修改留言信息
+message/deMessage: 删除留言信息
+comment/upComment: 修改评论信息
+comment/deComment: 删除评论信息
+user/toUser:    跳转个人信息
+user/showUser:    展示个人信息
+user/upUser:    修改个人信息
+user/deUser:    注销用户
+
+
+公共资源: ----> public
+
+
+外部引用模块:  ----> node_moudules
+
