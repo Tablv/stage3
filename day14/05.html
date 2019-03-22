@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../libs/angular.min.js"></script>
+    <style>
+        .red{
+            background: red;
+        }
+        .blue{
+            background: blue;
+        }
+        #d1{
+            border: 1px solid #000;
+            width: 100px;
+            height:100px
+        }
+        #d2{
+            border: 1px solid #000;
+            width: 100px;
+            height:100px
+        }
+    </style>
+</head>
+<body ng-app='app'>
+    <!-- 头部页面 -->
+
+    <div ng-include="'./head.html'"></div>
+
+    <ul ng-controller='ctrl'>
+        <li>
+            <label><input type="checkbox" ng-checked='foot.isChecked'> {{foot.ball}}</label>
+            <label><input type="checkbox"> 篮球</label>
+            <label><input type="checkbox"> 排球</label>
+        </li>
+        <li>
+            <input type="text" ng-model='color'>
+            <div id="d1" ng-class='color'></div>
+            <!-- 根据后面表达式判断得到的结果,来决定其类名是否生效 -->
+            <div id="d2" ng-class="{red:se==1,bule:se==0}"></div>
+        </li>
+        <li>
+            <select ng-model='id'>
+                <option value="1">目录一</option>
+                <option value="2">目录二</option>
+                <option value="3">目录三</option>
+            </select>
+            <ul ng-switch='id'>
+                <li ng-switch-when='1'>目录一的内容</li>
+                <li ng-switch-when='2'>目录二的内容</li>
+                <li ng-switch-when='3'>目录三的内容</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+<script>
+    var app = angular.module('app',[]);
+    app.controller('ctrl',['$scope',function($scope){
+        $scope.foot = {
+            isChecked:true,
+            ball:'足球'
+        };
+        $scope.se = 1;
+    }]);
+</script>
+</html>

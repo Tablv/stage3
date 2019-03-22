@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../libs/angular.min.js"></script>
+</head>
+<body ng-app>
+    <div> {{'abc'}} </div>
+    <div> {{123456}} </div>
+    <div> {{true}} </div>
+    <div> {{false}} </div>
+    <div> {{[1,22,333]}}</div>
+    <div> {{ {a:1,b:2} }}</div>
+    <div> 算数运算: {{ 2+3 }}.{{3*4}}</div>
+    <div> 关系运算: {{ 10>20 }}</div>
+    <div> 逻辑运算: {{ true && false}}</div>
+    <div> 三目运算: {{ 10>20?'大':'小'}}</div>
+    <div> 字符串拼接: {{ 'abc' + '1234'}}</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../libs/angular.min.js"></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl'> 
+        <!-- 调用名称为ctrl的控制器 -->
+        <input type="text" ng-model='data'>
+        {{data}} 
+    </div>
+</body>
+<script>
+   // 创建 app 应用模块,参数app就是上面ng-app指定的值
+   var app = angular.module('app',[]);
+   // 创建控制器
+   // 第一个参数表示该控制器的名称,方便后面使用该控制器
+   // 第二个参数是一个数组
+   // 数组里面,前面的元素是字符串 , 表示 angularjs的模块名称/依赖关系/依赖对象/内置对象
+   // 最后一个元素是function,表示该控制器的作用/干的事情
+   app.controller('ctrl',['$scope',function($scope){
+       // 模拟从后台获取的数据
+       // $scope 是一个angularjs已经定义好的空对象,
+       $scope.data = '这是后台传递过来的数据';
+   }]);
+</script>
+</html>

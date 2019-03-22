@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../libs/angular.min.js"></script>
+</head>
+
+<body ng-app='app'>
+    <div ng-controller='crtl'>
+        {{msg+name}}
+    </div>
+
+</body>
+<script>
+    // 定义app应用名称
+    var app = angular.module('app', []);
+    // 创建控制器
+    app.controller('crtl', ['$scope', function ($scope) {
+        // 绑定数据
+        $scope.msg = '大家好';
+        $scope.name = '王小明';
+    }]);
+</script>
+
+</html>

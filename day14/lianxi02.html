@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../libs/angular.min.js"></script>
+</head>
+<body ng-app='app'> 
+    <div ng-controller='ctrl'>
+        <h1 ng-bind='name'></h1>
+        <h2>我叫{{name}},今年{{age}}岁了,十年后{{age+10}}</h2>
+        <p ng-repeat='s in quququ' ng-bind='s'></p>
+        <h3 ng-bind='hhhh.math'></h3>
+        <img ng-src="{{path}}" width="100px" height="50px">
+        <p ng-repeat='n in aaaa track by $index ' ng-bind='n'></p>
+        <!-- $index是遍历数组时的元素下标 -->
+        <p ng-repeat='s in quququ' ng-show='$index%2' ng-bind='s'></p>
+    </div>
+</body>
+<script>
+    var app = angular.module('app',[]);
+    app.controller('ctrl',['$scope',function($scope){
+        $scope.name = '王小明';
+        $scope.age = 23;
+        $scope.boo = true;
+        $scope.quququ = ['swim','climb'];
+        $scope.hhhh = {math:89,PE:90,art:85};
+        $scope.path = './53f7fd9391f21.jpg';
+        $scope.aaaa = [1,2,3,3,4,5];
+    }])
+</script>
+</html>
